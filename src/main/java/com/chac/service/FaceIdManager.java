@@ -24,20 +24,20 @@ public class FaceIdManager {
 
     private final FaceidClient faceidClient;
 
-    @Value(value = "${tencent.faceIdClient.merchantId}")
+    @Value(value = "${tencent.faceIdClient.merchantId:123}")
     private String merchantId;
 
-    @Value(value = "${tencent.faceIdClient.assistElderly.merchantId}")
+    @Value(value = "${tencent.faceIdClient.assistElderly.merchantId:123}")
     private String elderlyMerchantId;
 
     public static List<String> WHITE_LIST = Lists.newArrayList("17188320008", "18018668825");
 
-    @Value(value = "${tencent.phoneVerify.whiteList}")
+    @Value(value = "${tencent.phoneVerify.whiteList:123}")
     private String phoneVerifyWhiteList;
 
-    public FaceIdManager(@Value(value = "${tencent.faceClient.secretId}") String secretId,
-                         @Value(value = "${tencent.faceClient.secretKey}") String secretKey,
-                         @Value(value = "${TencentCloud:Cos:Region}") String region) {
+    public FaceIdManager(@Value(value = "${tencent.faceClient.secretId:123}") String secretId,
+                         @Value(value = "${tencent.faceClient.secretKey:123}") String secretKey,
+                         @Value(value = "${TencentCloud:Cos:Region:123}") String region) {
         Credential credential = new Credential(secretId, secretKey);
         this.faceidClient = new FaceidClient(credential, region);
     }
