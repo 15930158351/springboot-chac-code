@@ -11,30 +11,32 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class HoppedEncryptUtil {
-    private static final String SECRET = "AES";
+    private static final String ALGORITHM = "AES";
     private static final String CIPHER_ALGORITHM = "AES/CBC/PKCS7Padding";
-    private static final String AES_SECRET = "688ec8e3907333989e23ca019ad1934a";
+    //对应有活生产密钥邮件中的 app_secret
+    private static final String APP_SECRET = "688ec8e3907333989e23ca019ad1934a";
+    //对应有活生产密钥邮件中的 aes_iv
     private static final String AES_IV = "ff465fdecc764337";
 
     public HoppedEncryptUtil() {
     }
 
     public static String encrypt(String str) throws Exception {
-        return encrypt(str, "688ec8e3907333989e23ca019ad1934a", "ff465fdecc764337");
+        return encrypt(str, APP_SECRET, AES_IV);
     }
 
     public static String encrypt(String str, String key, String aesIV) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
-        cipher.init(1, new SecretKeySpec(keyBytes, "AES"), new IvParameterSpec(aesIV.getBytes(StandardCharsets.UTF_8)));
+        cipher.init(1, new SecretKeySpec(keyBytes, ALGORITHM), new IvParameterSpec(aesIV.getBytes(StandardCharsets.UTF_8)));
         byte[] doFinal = cipher.doFinal(str.getBytes(StandardCharsets.UTF_8));
         return new String(Base64.getEncoder().encode(doFinal));
     }
 
     public static String decrypt(String str, String key, String aesIV) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
-        cipher.init(2, new SecretKeySpec(keyBytes, "AES"), new IvParameterSpec(aesIV.getBytes(StandardCharsets.UTF_8)));
+        cipher.init(2, new SecretKeySpec(keyBytes, ALGORITHM), new IvParameterSpec(aesIV.getBytes(StandardCharsets.UTF_8)));
         byte[] doFinal = cipher.doFinal(Base64.getDecoder().decode(str));
         return new String(doFinal);
     }
@@ -82,11 +84,11 @@ public class HoppedEncryptUtil {
                 "    ]\n" +
                 "}";
 
-        String s = encrypt(data, "688ec8e3907333989e23ca019ad1934a", "ff465fdecc764337");
+        String s = encrypt(data, APP_SECRET, AES_IV);
         // 打印加密后的字符串
         System.out.println(s);
 
-        String s1 = decrypt(s, "688ec8e3907333989e23ca019ad1934a", "ff465fdecc764337");
+        String s1 = decrypt(s, APP_SECRET, AES_IV);
         // 打印解密后的字符串
         System.out.println(s1);
     }
