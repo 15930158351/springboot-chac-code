@@ -19,9 +19,9 @@ public class TencentOCRManager {
 
     public static final String CARD_SIDE_FRONT = "FRONT";
 
-    public TencentOCRManager(@Value(value = "${TencentCloud:SecretId}") String secretId,
-                             @Value(value = "${TencentCloud:SecretKey}") String secretKey,
-                             @Value(value = "${TencentCloud:Cos:Region}") String region) {
+    public TencentOCRManager(@Value(value = "${TencentCloud:SecretId:123}") String secretId,
+                             @Value(value = "${TencentCloud:SecretKey:123}") String secretKey,
+                             @Value(value = "${TencentCloud:Cos:Region:123}") String region) {
         Credential credential = new Credential(secretId, secretKey);
         this.ocrClient = new OcrClient(credential, region);
     }
