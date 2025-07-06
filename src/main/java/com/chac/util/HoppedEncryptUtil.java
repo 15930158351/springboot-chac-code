@@ -11,12 +11,12 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class HoppedEncryptUtil {
-    private static final String ALGORITHM = "AES";
-    private static final String CIPHER_ALGORITHM = "AES/CBC/PKCS7Padding";
+    public static final String ALGORITHM = "AES";
+    public static final String CIPHER_ALGORITHM = "AES/CBC/PKCS7Padding";
     //对应有活生产密钥邮件中的 app_secret
-    private static final String APP_SECRET = "688ec8e3907333989e23ca019ad1934a";
+    public static final String APP_SECRET = "688ec8e3907333989e23ca019ad1934a";
     //对应有活生产密钥邮件中的 aes_iv
-    private static final String AES_IV = "ff465fdecc764337";
+    public static final String AES_IV = "ff465fdecc764337";
 
     public HoppedEncryptUtil() {
     }
