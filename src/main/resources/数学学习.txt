@@ -1,0 +1,16 @@
+如何培养自己深度思考的习惯
+https://www.zhihu.com/question/290935221/answer/1584113164
+
+为什么我还是无法理解transformer
+https://www.zhihu.com/question/596771388/answer/3491511607
+
+
+
+
+线性代数 到矩阵
+https://www.zhihu.com/tardis/bd/art/32133330?source_id=1001
+
+矩阵乘法最初的目的 是为了解线性方程组
+https://zhuanlan.zhihu.com/p/32118001
+
+
